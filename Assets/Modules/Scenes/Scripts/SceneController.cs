@@ -76,6 +76,7 @@ namespace Metaverse.Scenes
             if(activeScene != null)
                 activeScene.Dispose();
 
+            // We may be at the middle of spawning an item, so we reset the spawner
             sceneItemSpawner.Reset();
             sceneData.SpawnScene();
             activeScene = sceneData;        

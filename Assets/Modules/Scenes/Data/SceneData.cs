@@ -20,6 +20,7 @@ namespace Metaverse.Scenes
 
         public void SpawnScene()
         {         
+            // This gameobject will hold all the gameobjects related to the scene
             rootGameObject = new GameObject(ROOT_GAMEOBJECT_NAME);
 
             // We spawn all the items that are associated with the scene
