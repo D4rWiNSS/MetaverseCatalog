@@ -1,6 +1,4 @@
 using Metaverse.UI.Catalog;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Metaverse.Scenes
@@ -17,9 +15,14 @@ namespace Metaverse.Scenes
 
         public SceneController()
         {
+            // We load all the scenes
             scenes = Resources.LoadAll<SceneData>(SCENE_PATH_DATA);
+
+            // Create and configure the spawner
             sceneItemSpawner = new SceneItemController();
             sceneItemSpawner.OnNewItemAdded += NewItemAddedToScene;
+
+            // If we have more than 1 scene, we load it 
             if (scenes.Length > 0 )
                 LoadScene(scenes[0]);
         }
@@ -28,6 +31,9 @@ namespace Metaverse.Scenes
         {
             sceneItemSpawner.OnNewItemAdded -= NewItemAddedToScene;
             sceneItemSpawner.Dispose();
+
+            if (activeScene != null)
+                activeScene.Dispose();
         }
 
         public void LoadNextScene()
@@ -60,6 +66,7 @@ namespace Metaverse.Scenes
 
         private void LoadScene(SceneData sceneData)
         {
+            // if we have an active scene, we dispose it
             if(activeScene != null)
                 activeScene.Dispose();
 

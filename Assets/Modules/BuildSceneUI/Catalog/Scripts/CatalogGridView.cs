@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace Metaverse.UI.Catalog
@@ -50,8 +49,9 @@ namespace Metaverse.UI.Catalog
 
         public void Dispose()
         {
-            foreach(CatalogItemAdapter adapter in adapters)
+            for (int i = adapters.Count - 1; i >= 0; i--)
             {
+                CatalogItemAdapter adapter = adapters[i];
                 adapter.OnItemSelected -= CatalogItemSelected;
                 adapter.Dispose();
             }
@@ -59,6 +59,8 @@ namespace Metaverse.UI.Catalog
 
         private void PrePopulateItems(int amountOfItemsToPopulate)
         {
+            // Since we already know the amount of items to show, we create them ahead of time to avoid create/destroy them each time
+            // This way we can just swap the data and it will be more smooth
             for(int i = 0; i <= amountOfItemsToPopulate; i++)
             {
                 var adapter = Instantiate(catalogItemAdapterPrefab, contentParentTransform);

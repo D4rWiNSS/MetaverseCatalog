@@ -1,11 +1,9 @@
 ﻿using Metaverse.UI.Catalog;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Suduck
+namespace Metaverse.UI
 {
     public class BuildSceneUIView : MonoBehaviour
     {
@@ -19,12 +17,14 @@ namespace Suduck
 
         private void Awake()
         {
+            // We setup the view
             nextSceneButton.onClick.AddListener(() => OnNextButtonPress?.Invoke());
             previusSceneButton.onClick.AddListener(() => OnPreviousButtonPress?.Invoke());
         }
 
         public void Initialize(CatalogController catalogController) 
         {
+            // We inject the views into the controllers
             catalogController.Initialize(catalogGridView);
         }
 

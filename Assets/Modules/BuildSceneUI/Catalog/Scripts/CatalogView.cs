@@ -27,6 +27,7 @@ namespace Metaverse.UI.Catalog
 
         public void Initialize()
         {
+            // We initialize the gridview with the amount of items to show
             gridView.Initialize(itemsPerPage);
             gridView.OnItemSelected += CatalogItemSelected;
 
@@ -37,23 +38,26 @@ namespace Metaverse.UI.Catalog
         public void Dispose()
         {
             gridView.OnItemSelected -= CatalogItemSelected;
+            gridView.Dispose();
 
             previousButton?.onClick.RemoveAllListeners();
             nextButton?.onClick.RemoveAllListeners();
 
-            if(gameObject != null) 
-                Destroy(gameObject);
+            Destroy(gameObject);
         }
 
         public void SetItems(CatalogItemData[] catalogItems)
         {
             this.catalogItems = catalogItems;
             currentIndex = 0;
+
+            // We find the maximum index
             if (catalogItems.Length >= itemsPerPage)
                 maxIndex = (catalogItems.Length / itemsPerPage) - 1;
             else
                 maxIndex = 0;
 
+            // We set the index a show the items
             SetIndex(currentIndex);
             gridView.Show();
         }
@@ -84,7 +88,9 @@ namespace Metaverse.UI.Catalog
             List<CatalogItemData> itemsToShow = new List<CatalogItemData>();
             int initialIndex = index * itemsPerPage;
 
-            for (int i = initialIndex; i < initialIndex+itemsPerPage; i++)
+            // We get the current items taking into account the items per page that we want to show
+            // If there are less items than the amount we want to show, we just skip
+            for (int i = initialIndex; i < initialIndex + itemsPerPage; i++)
             {
                 if (catalogItems.Length <= i)
                     break;

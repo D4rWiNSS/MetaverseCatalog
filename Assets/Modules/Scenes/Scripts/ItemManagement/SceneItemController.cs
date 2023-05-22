@@ -1,8 +1,5 @@
 ﻿using Metaverse.UI.Catalog;
-using Suduck;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace Metaverse.Scenes
@@ -16,9 +13,11 @@ namespace Metaverse.Scenes
 
         public void SpawnItem(CatalogItemData catalogItem)
         {
+            // We create the representantion of the item
             currentSceneItemRepresentantion = ScriptableObject.CreateInstance<SceneItemRepresentantion>();
             currentSceneItemRepresentantion.SetCatalogItem(catalogItem);
             
+            // We spawn the item prefab
             var activeItem = GameObject.Instantiate(catalogItem.GetPrefab());
             positionerComponent = activeItem.AddComponent<ItemPositioner>();
             positionerComponent.OnItemPositioned += ItemPositioned;
@@ -30,24 +29,31 @@ namespace Metaverse.Scenes
         }
 
         public void Reset()
-        {
-            if (positionerComponent == null)
-                return;
-
-            positionerComponent.OnItemPositioned -= ItemPositioned;
-            GameObject.Destroy(positionerComponent.gameObject);           
+        {          
+            DestroyItemPositionerComponent();
         }
 
         private void ItemPositioned(Vector3 position) 
         {
-            positionerComponent.OnItemPositioned -= ItemPositioned;
-            GameObject.Destroy(positionerComponent);
+            DestroyItemPositionerComponent();
 
+            // We set the new position of the object and fire the event because the item is ready
             currentSceneItemRepresentantion.SetPosition(position);
             OnNewItemAdded?.Invoke(currentSceneItemRepresentantion, positionerComponent.gameObject);
 
+            // We remove the references since we are not setting this item anymore
             currentSceneItemRepresentantion = null;
             positionerComponent = null;
+        }
+
+        private void DestroyItemPositionerComponent()
+        {
+            // We just destroy the component if exists
+            if (positionerComponent == null)
+                return;
+
+            positionerComponent.OnItemPositioned -= ItemPositioned;
+            GameObject.Destroy(positionerComponent);
         }
     }
 }

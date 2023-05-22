@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace Metaverse.UI.Catalog
@@ -17,11 +15,13 @@ namespace Metaverse.UI.Catalog
 
         public CatalogController()
         {
+            // We load all the items in when the controller is created
             catalogItems = Resources.LoadAll<CatalogItemData>(CATALOG_PATH_DATA);
         }
 
         public void Initialize(CatalogView catalogView)
         {
+            // We prepare the view of the catalog
             this.catalogView = catalogView;
             catalogView.OnCatalogItemSpawn += CatalogItemSelected;
 

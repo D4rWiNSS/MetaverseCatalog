@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,14 +11,15 @@ namespace Metaverse.UI.Catalog
     {
         public event Action<CatalogItemData> OnItemSelected;
 
-        public Image itemThumbnailImage;
-        public TextMeshProUGUI itemTitleText;
+        [SerializeField] private Image itemThumbnailImage;
+        [SerializeField] private TextMeshProUGUI itemTitleText;
 
         private Button adapterButton;
         private CatalogItemData catalogItemData;
 
         private void Awake()
         {
+            // We setup the view
             adapterButton = GetComponent<Button>();
             adapterButton.onClick.AddListener(Selected);
         }
@@ -29,6 +28,7 @@ namespace Metaverse.UI.Catalog
         {
             this.catalogItemData = catalogItemData;
 
+            // Set the data into the view
             itemThumbnailImage.sprite = catalogItemData.GetThumbnail();
             itemTitleText.text = catalogItemData.GetTitle();
         }

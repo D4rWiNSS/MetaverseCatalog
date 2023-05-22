@@ -1,8 +1,5 @@
 using Metaverse.UI.Catalog;
-using Suduck;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Metaverse.UI
@@ -22,9 +19,12 @@ namespace Metaverse.UI
 
         public BuildSceneUIController()
         {
-            view = GameObject.Instantiate(Resources.Load<GameObject>(VIEW_PATH)).GetComponent<BuildSceneUIView>();
+            // We create configure all the controllers
             CreateControllers();
             ConfigureControllers();
+
+            // We create and inject the necessaries dependencies for the view
+            view = GameObject.Instantiate(Resources.Load<GameObject>(VIEW_PATH)).GetComponent<BuildSceneUIView>();
 
             view.Initialize(catalogController);
             view.OnNextButtonPress += NextScene;

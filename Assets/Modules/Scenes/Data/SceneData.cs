@@ -8,15 +8,16 @@ namespace Metaverse.Scenes
     {
         private const string ROOT_GAMEOBJECT_NAME = "ActiveScene";
 
-        [SerializeField] private List<SceneItemRepresentantion> sceneRepresentantion = new List<SceneItemRepresentantion>();
+        private List<SceneItemRepresentantion> sceneRepresentantion = new List<SceneItemRepresentantion>();
 
         private List<GameObject> activeGameObjects = new List<GameObject>();
         private GameObject rootGameObject;
 
         public void SpawnScene()
-        {
+        {         
             rootGameObject = new GameObject(ROOT_GAMEOBJECT_NAME);
 
+            // We spawn all the items that are associated with the scene
             foreach (SceneItemRepresentantion item in sceneRepresentantion)
             {
                 GameObject instantiatedItem = Instantiate(item.GetItemPrefab(), rootGameObject.transform);
@@ -32,6 +33,7 @@ namespace Metaverse.Scenes
 
         public void AddItem(SceneItemRepresentantion itemToAdd, GameObject gameObject)
         {
+            // We add the item to the scene and set its parenting
             sceneRepresentantion.Add(itemToAdd);
             gameObject.transform.SetParent(rootGameObject.transform);
         }

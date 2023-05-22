@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
-
-namespace Suduck
+﻿
+namespace Metaverse.Scenes
 {
     public static class Constants
     {
