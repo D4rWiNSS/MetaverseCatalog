@@ -13,6 +13,11 @@ namespace Metaverse.Scenes
         private List<GameObject> activeGameObjects = new List<GameObject>();
         private GameObject rootGameObject;
 
+        public void ResetScene()
+        {
+            sceneRepresentantion.Clear();
+        }
+
         public void SpawnScene()
         {         
             rootGameObject = new GameObject(ROOT_GAMEOBJECT_NAME);

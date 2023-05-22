@@ -15,8 +15,14 @@ namespace Metaverse.Scenes
 
         public SceneController()
         {
-            // We load all the scenes
+            // We load all the scenes from the resources folder for simplicity,
+            // But we should load the data from a server and create the instances from the data
             scenes = Resources.LoadAll<SceneData>(SCENE_PATH_DATA);
+
+            // We just reset the data each play session for the simplicity of the example.
+            // I assume that we were get the data of the scene from a server so we can create an instance for each scene 
+            foreach (SceneData sceneData in scenes)
+                sceneData.ResetScene();
 
             // Create and configure the spawner
             sceneItemSpawner = new SceneItemController();
