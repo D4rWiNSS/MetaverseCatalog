@@ -8,7 +8,7 @@ namespace Metaverse.Scenes
         private const string SCENE_PATH_DATA = "Scenes";
 
         private SceneData[] scenes;
-        private SceneItemController sceneItemSpawner;
+        private SceneNewItemController sceneItemSpawner;
 
         private SceneData activeScene;
         private int currentIndex = 0;
@@ -19,13 +19,13 @@ namespace Metaverse.Scenes
             // But we should load the data from a server and create the instances from the data
             scenes = Resources.LoadAll<SceneData>(SCENE_PATH_DATA);
 
-            // We just reset the data each play session for the simplicity of the example.
-            // I assume that we were get the data of the scene from a server so we can create an instance for each scene 
+            // We just reset the data each play session using a little "hack" for the simplicity of the example.
+            // I assume that we were get the data of the scene from a server so we can create an instance for each scene and of course this won't be necessary
             foreach (SceneData sceneData in scenes)
                 sceneData.ResetScene();
 
             // Create and configure the spawner
-            sceneItemSpawner = new SceneItemController();
+            sceneItemSpawner = new SceneNewItemController();
             sceneItemSpawner.OnNewItemAdded += NewItemAddedToScene;
 
             // If we have more than 1 scene, we load it 

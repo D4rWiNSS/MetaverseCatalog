@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: 3 - Green Sphere
   m_EditorClassIdentifier: 
   title: Green sphere
-  thumbnail: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  thumbnail: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   prefab: {fileID: 2159054723175901848, guid: aa673a83ffac9fc4b8be2e7e7525bbba, type: 3}

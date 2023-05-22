@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: 1 - Red sphere
   m_EditorClassIdentifier: 
   title: Red sphere
-  thumbnail: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  thumbnail: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   prefab: {fileID: 8531907706814769818, guid: edfff1c2a5221fe4998688e8b77ceef3, type: 3}

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Metaverse.Scenes
 {
-    public class SceneItemController
+    public class SceneNewItemController
     {
         public event Action<SceneItemRepresentantion, GameObject> OnNewItemAdded;
 

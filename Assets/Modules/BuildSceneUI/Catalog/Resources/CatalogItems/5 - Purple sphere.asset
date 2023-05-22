@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: 5 - Purple sphere
   m_EditorClassIdentifier: 
   title: Purple sphere
-  thumbnail: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  thumbnail: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   prefab: {fileID: 4447873142386074611, guid: 528d3a65551dc364b81397cf97f1414b, type: 3}
