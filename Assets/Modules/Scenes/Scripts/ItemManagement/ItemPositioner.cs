@@ -13,6 +13,7 @@ namespace Metaverse.Scenes
         private void Awake()
         {
             floorLayer = LayerMask.GetMask(Constants.FLOOR_LAYER_NAME);
+            // We set the item far away so it only shows when the user put the mouse inside the floor
             transform.position = Vector3.one * 9999;
         }
 
